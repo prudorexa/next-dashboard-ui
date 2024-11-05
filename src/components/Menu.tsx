@@ -1,3 +1,7 @@
+import React from "react";
+import Link from "next/link";
+
+// Full menuItems array with all provided data
 const menuItems = [
   {
     title: "MENU",
@@ -112,3 +116,25 @@ const menuItems = [
     ],
   },
 ];
+
+const Menu: React.FC = () => {
+  return (
+    <div>
+      {menuItems.map((section) => (
+        <div key={section.title} className="mb-4">
+          <h3 className="text-lg font-semibold mb-2">{section.title}</h3>
+          <ul>
+            {section.items.map((item) => (
+              <li key={item.label} className="flex items-center gap-2 py-2">
+                <img src={item.icon} alt={`${item.label} icon`} width={20} height={20} />
+                <Link href={item.href}>{item.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Menu;
